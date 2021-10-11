@@ -1,0 +1,55 @@
+﻿@using LoginComponent
+@using System.IO
+@using System.Text.Json
+@using Hand_in_1.Models
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+
+<div class="sidebar">
+    <NavMenu/>
+</div>
+
+<div class="main">
+    
+    <div class="top-row px-4">
+        <Login/>
+        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    </div>
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+
+@code{
+    
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    public IList<User> users { get; private set; }
+    private readonly string adultsFile = "adults.json";
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var user = (await AuthStat).User;
+        if(!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"/login");
+            // NavigationManager.NavigateTo($"/Login?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}");
+        }
+    }
+
+   // private void SaveChanges()
+ //   {
+      //  string user = JsonSerializer.Serialize(User, new JsonSerializerOptions
+    //    {
+    //        WriteIndented = true
+    //    });
+       // using (StreamWriter outputFile = new StreamWriter(user, false))
+     //    using StreamWriter sw = new StreamWriter("Filecontext.cs");
+     //   {
+       //     sw.Write(user);
+       // }
+        
+    }
+}

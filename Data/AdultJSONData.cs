@@ -1,0 +1,79 @@
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text.Json;
+using Hand_in_1.Models;
+
+namespace DNP1___Hand_in_1.Data
+{
+    public class AdultJSONData : IAdultData
+    {
+        private string adultFile = "adults.json";
+        private IList<Person> adults;
+
+        public AdultJSONData()
+        {
+            if (!File.Exists(adultFile))
+            {
+                Seed();
+                WriteToAdultFile();
+
+            }
+            else
+            {
+                string content = File.ReadAllText(adultFile);
+                adults = JsonSerializer.Deserialize<List<Person>>(content);
+            }
+        }
+
+        public void Seed()
+        {
+            Person[] ad =
+            {
+                new Person
+                {
+                    Id = 1,
+                    FirstName = "John",
+                    LastName = "Sten",
+                    HairColor = "Brown",
+                    EyeColor = "Brown",
+                    Age = 26,
+                    Weight = 70,
+                    Height = 186,
+                    Sex = "Male"
+                },
+            };
+            adults = ad.ToList();
+
+        }
+
+        public IList<Person> getAdult()
+        {
+            List<Person> tmp = new List<Person>(adults);
+            return tmp;
+
+        }
+
+        public void AddAdult(Person adult)
+        {
+            int max = adults.Max(adult => adult.Id);
+            adult.Id = (++max);
+            adults.Add(adult);
+            WriteToAdultFile();
+        }
+
+        public void RemoveAdult(int id)
+        {
+            Person toRemove = adults.First(t => t.Id == id);
+            adults.Remove(toRemove);
+            WriteToAdultFile();
+        }
+
+        private void WriteToAdultFile()
+        {
+            string adultAsJson = JsonSerializer.Serialize(adults);
+            File.WriteAllText(adultFile, adultAsJson);
+        }
+    }
+}

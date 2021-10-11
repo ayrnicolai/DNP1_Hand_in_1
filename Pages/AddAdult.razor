@@ -1,0 +1,64 @@
+﻿@page "/AddAdult"
+@using Hand_in_1.Data
+@using Hand_in_1.Models
+
+
+@inject IAdultData AdultData
+@inject NavigationManager NavigationManager
+
+<h3>AddAdult</h3>
+
+<EditForm Model="@newToDoItem" OnValidSubmit="@AddNewAdult">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+   
+    <div class="form-group">
+        Firstname<br/>
+        <InputTextArea data-browse="4" @bind-Value="newToDoItem.FirstName"/>
+    </div>
+    <div class="form-group">
+        Lastname:<br/>
+        <InputTextArea data-browse="4" @bind-Value="newToDoItem.LastName"/>
+    </div>
+    <div class="form-group">
+        Hair Color:<br/>
+        <InputTextArea data-browse="4" @bind-Value="newToDoItem.HairColor"/>
+    </div>
+    <div class="form-group">
+        Eye Color:<br/>
+        <InputTextArea data-browse="4" @bind-Value="newToDoItem.EyeColor"/>
+    </div>
+    
+    <div class="form-group">
+        Age:<br/>
+        <InputNumber data-browse="4" @bind-Value="newToDoItem.Age"/>
+    </div>
+    <div class="form-group">
+        Weight:<br/>
+        <InputNumber data-browse="4" @bind-Value="newToDoItem.Weight"/>
+    </div>
+    <div class="form-group">
+        Height:<br/>
+        <InputNumber data-browse="4" @bind-Value="newToDoItem.Height"/>
+    </div>
+    
+    <div class="form-group">
+        Sex:<br/>
+        <InputTextArea data-browse="4" @bind-Value="newToDoItem.Sex"/>
+    </div>
+    <p class="actions">
+        <button class="btn btn-outline-dark" type="submit">Create</button>
+    </p>
+</EditForm>
+
+
+@code {
+    private Person newToDoItem = new Person();
+
+    private void AddNewAdult()
+    {
+        AdultData.AddAdult(newToDoItem);
+        NavigationManager.NavigateTo("/Adult");
+    }
+
+}
