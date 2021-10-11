@@ -89,6 +89,20 @@ using Hand_in_1.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\AddAdult.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\AddAdult.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/AddAdult")]
     public partial class AddAdult : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -98,7 +112,7 @@ using Hand_in_1.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\AddAdult.razor"
+#line 57 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\AddAdult.razor"
        
     private Person newToDoItem = new Person();
 
@@ -106,8 +120,21 @@ using Hand_in_1.Models;
     {
         AdultData.AddAdult(newToDoItem);
         NavigationManager.NavigateTo("/Adult");
+        WriteAdult();
+
     }
 
+    void WriteAdult()
+    {
+        string jsonAdults = JsonSerializer.Serialize(newToDoItem, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+        using (StreamWriter outputFile = new StreamWriter("adults.json", false))
+        {
+            outputFile.Write(jsonAdults);
+        }
+    }
 
 #line default
 #line hidden

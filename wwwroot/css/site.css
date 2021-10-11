@@ -3,6 +3,10 @@
 html, body {
     font-family: 'Calibri', Calibri, Calibri, sans-serif;
 }
+.table {
+    border:1px solid grey;
+
+}
 
 a, .btn-link {
     color: #0366d6;

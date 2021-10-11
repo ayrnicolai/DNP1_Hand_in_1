@@ -1,6 +1,8 @@
 ﻿@page "/AddAdult"
 @using Hand_in_1.Data
 @using Hand_in_1.Models
+@using System.IO
+@using System.Text.Json
 
 
 @inject IAdultData AdultData
@@ -59,6 +61,21 @@
     {
         AdultData.AddAdult(newToDoItem);
         NavigationManager.NavigateTo("/Adult");
+        WriteAdult();
+
     }
+
+    void WriteAdult()
+    {
+        string jsonAdults = JsonSerializer.Serialize(newToDoItem, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+        using (StreamWriter outputFile = new StreamWriter("adults.json", false))
+        {
+            outputFile.Write(jsonAdults);
+        }
+    }
+}
 
 }

@@ -3,15 +3,6 @@
 @using Hand_in_1.Models;
 @inject IAdultData AdultData
 
-<html>
-<style>
-table, th, td {
-  border:1px solid grey;
-}
-</style>
-</html>
-
-
 <h3>Adult</h3>
 <p>
     Filter person: <input type="number" @oninput="@((arg) => Filter(arg))" style="width:50px"/>

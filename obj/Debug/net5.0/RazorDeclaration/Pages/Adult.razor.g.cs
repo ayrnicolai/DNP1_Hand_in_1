@@ -98,7 +98,7 @@ using Hand_in_1.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 71 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\Adult.razor"
+#line 62 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\Adult.razor"
        
     private IList<Person> adult;
     private IList<Person> allAdults;
