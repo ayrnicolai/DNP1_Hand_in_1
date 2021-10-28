@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Hand_in_1.Models;
 
 namespace DNP1___Hand_in_1.Data
@@ -48,14 +49,14 @@ namespace DNP1___Hand_in_1.Data
 
         }
 
-        public IList<Person> getAdult()
+        public async Task<IList<Person>> getAdult()
         {
             List<Person> tmp = new List<Person>(adults);
             return tmp;
 
         }
 
-        public void AddAdult(Person adult)
+        public async Task AddAdultAsync(Person adult)
         {
             int max = adults.Max(adult => adult.Id);
             adult.Id = (++max);
@@ -63,7 +64,7 @@ namespace DNP1___Hand_in_1.Data
             WriteToAdultFile();
         }
 
-        public void RemoveAdult(int id)
+        public async Task RemoveAdultAsync(int id)
         {
             Person toRemove = adults.First(t => t.Id == id);
             adults.Remove(toRemove);

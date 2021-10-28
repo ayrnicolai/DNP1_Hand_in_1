@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Hand_in_1.Models;
 
 namespace Hand_in_1.Data.Impl {
@@ -11,7 +12,7 @@ public class InMemoryUserService : IUserService {
         users = new[] {
             new User {
                 ID = 123456,
-                UserName = "Farmand",
+                Username = "Farmand",
                 FirstName = "Kenned",
                 LastName = "Ødegaard",
                 HairColor = "Black",
@@ -25,7 +26,7 @@ public class InMemoryUserService : IUserService {
             },
             new User {
                 ID = 123456,
-                UserName = "Moderjord",
+                Username = "Moderjord",
                 FirstName = "Birgitte",
                 LastName = "Tierney",
                 HairColor = "Brown",
@@ -39,7 +40,7 @@ public class InMemoryUserService : IUserService {
             },
             new User {
                 ID = 123456,
-                UserName = "Sønnike",
+                Username = "Sønnike",
                 FirstName = "Pierre",
                 LastName = "Aubameyang",
                 HairColor = "Black",
@@ -56,7 +57,12 @@ public class InMemoryUserService : IUserService {
 
 
     public User ValidateUser(string userName, string password) {
-        User first = users.FirstOrDefault(user => user.UserName.Equals(userName));
+        throw new NotImplementedException();
+    }
+    
+    public async Task<User> ValidateLogin(string username, string password)
+    {
+        User first = users.FirstOrDefault(user => user.Username.Equals(username));
         if (first == null) {
             throw new Exception("User not found in family");
         }

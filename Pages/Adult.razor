@@ -84,14 +84,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        allAdults = AdultData.getAdult();
+        allAdults = await AdultData.getAdult();
         adultsToShow = allAdults;
     }
 
-    private void RemoveAdult(int Id)
+    private async Task RemoveAdult(int Id)
     {
         Person personToRemove = adultsToShow.First(t => t.Id == Id);
-        AdultData.RemoveAdult(Id);
+        AdultData.RemoveAdultAsync(Id);
         allAdults.Remove(personToRemove);
         adultsToShow.Remove(personToRemove);
         

@@ -25,10 +25,8 @@ public class Startup {
     public void ConfigureServices(IServiceCollection services) {
         services.AddRazorPages();
         services.AddServerSideBlazor();
-        services.AddSingleton<IAdultData, AdultJSONData>();
-
-        services.AddScoped<IUserService, InMemoryUserService>();
-        
+        services.AddSingleton<IAdultData, AdultApiService>();
+        services.AddScoped<IUserService, LoginApiService>();
         services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
         services.AddAuthorization(options => {

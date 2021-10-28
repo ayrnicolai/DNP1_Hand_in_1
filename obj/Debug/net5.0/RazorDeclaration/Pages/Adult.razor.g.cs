@@ -13,77 +13,77 @@ namespace Hand_in_1.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 1 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 2 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 3 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 4 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 5 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 6 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 7 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 8 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using Hand_in_1;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\_Imports.razor"
+#line 9 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\_Imports.razor"
 using Hand_in_1.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\Adult.razor"
+#line 2 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\Pages\Adult.razor"
 using Hand_in_1.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\Adult.razor"
+#line 3 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\Pages\Adult.razor"
 using Hand_in_1.Models;
 
 #line default
@@ -98,7 +98,7 @@ using Hand_in_1.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 62 "C:\Users\ayrni\OneDrive\Skrivebord\Hand in 1\Pages\Adult.razor"
+#line 62 "C:\Users\ayrni\OneDrive\Skrivebord\DNP\Hand in 1\Pages\Adult.razor"
        
     private IList<Person> adult;
     private IList<Person> allAdults;
@@ -124,14 +124,14 @@ using Hand_in_1.Models;
 
     protected override async Task OnInitializedAsync()
     {
-        allAdults = AdultData.getAdult();
+        allAdults = await AdultData.getAdult();
         adultsToShow = allAdults;
     }
 
-    private void RemoveAdult(int Id)
+    private async Task RemoveAdult(int Id)
     {
         Person personToRemove = adultsToShow.First(t => t.Id == Id);
-        AdultData.RemoveAdult(Id);
+        AdultData.RemoveAdultAsync(Id);
         allAdults.Remove(personToRemove);
         adultsToShow.Remove(personToRemove);
         

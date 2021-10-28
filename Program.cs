@@ -8,8 +8,8 @@ namespace Hand_in_1 {
 public class Program {
     public static void Main(string[] args) {
         CreateHostBuilder(args).Build().Run();
-        User user = new User();
-        FileContext file = new FileContext();
+     //   User user = new User();
+  //      FileContext file = new FileContext();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>

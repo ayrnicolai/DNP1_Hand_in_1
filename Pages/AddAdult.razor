@@ -57,11 +57,12 @@
 @code {
     private Person newToDoItem = new Person();
 
-    private void AddNewAdult()
+    private async Task AddNewAdult()
     {
-        AdultData.AddAdult(newToDoItem);
+        
+        await AdultData.AddAdultAsync(newToDoItem);
         NavigationManager.NavigateTo("/Adult");
-        WriteAdult();
+   //     WriteAdult();
 
     }
 
